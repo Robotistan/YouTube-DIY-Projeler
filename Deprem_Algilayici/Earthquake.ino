@@ -1,9 +1,8 @@
-
 #include <Arduino.h>
 #include <TinyMPU6050.h>
 
-float pos_offset = 10;
-float neg_offset = -10;
+float pos_offset = 1;
+float neg_offset = -1;
 long angle_x, angle_y, angle_z, offset_x, offset_y, offset_z;
 MPU6050 mpu (Wire);
 
@@ -20,17 +19,17 @@ void setup() {
   Serial.println("Calibration complete!");
   Serial.println("Offsets:");
   Serial.print("AccX Offset = ");
-  Serial.println(mpu.GetAccXOffset());
+  Serial.println(mpu.GetAccX());
   Serial.print("AccY Offset = ");
-  Serial.println(mpu.GetAccYOffset());
+  Serial.println(mpu.GetAccY());
   Serial.print("AccZ Offset = ");
-  Serial.println(mpu.GetAccZOffset());
+  Serial.println(mpu.GetAccZ());
   Serial.print("GyroX Offset = ");
-  Serial.println(mpu.GetGyroXOffset());
+  Serial.println(mpu.GetGyroX());
   Serial.print("GyroY Offset = ");
-  Serial.println(mpu.GetGyroYOffset());
+  Serial.println(mpu.GetGyroY());
   Serial.print("GyroZ Offset = ");
-  Serial.println(mpu.GetGyroZOffset());
+  Serial.println(mpu.GetGyroZ());
   pinMode(14,OUTPUT);
   pinMode(9, OUTPUT);
   digitalWrite(14, LOW);
@@ -73,7 +72,7 @@ void loop() {
 
   for(int i=0; i<50; i++){
   digitalWrite(14,HIGH);
-  digitalWrite(9,LOW);
+  digitalWrite(9,HIGH);
   delay(50);
   digitalWrite(14,LOW);
   digitalWrite(9,LOW);
